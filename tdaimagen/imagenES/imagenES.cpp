@@ -1,6 +1,6 @@
  /**
   * @file imagenES.cpp
-  * @brief Fichero con definiciones para la E/S de imágenes
+  * @brief Fichero con definiciones para la E/S de imï¿½genes
   *
   * Permite la E/S de archivos de tipo PGM,PPM
   *
@@ -9,7 +9,7 @@
 #include <fstream>
 #include <string>
 
-#include <imagenES.h>
+#include "imagenES.h"
 
 using namespace std;
 
