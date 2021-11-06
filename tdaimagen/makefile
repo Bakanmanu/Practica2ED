@@ -1,22 +1,22 @@
 INCLUDE = ./imagenES
 LIB     = .
-OBJ     = .
-SRC	= .
-CC = g++
+OBJ     = ./obj
+SRC		= .
+CC 		= g++ -g
 
 all: ejecutable1
 
-ejercicio1 : ejercicio1.cpp imagen
-	$(CC) -c ejercicio1.cpp -I$(INCLUDE)
+ejecutable1: $(OBJ)/ejercicio1.o
+	$(CC) -o ejercicio1 $(OBJ)/ejercicio1.o $(OBJ)/imagen.o $(OBJ)/imagenES.o -I$(INCLUDE)
 
-imagenS: $(INCLUDE)/imagenES.h $(INCLUDE)/imagenES.cpp
-	$(CC) -c $(INCLUDE)/imagenES.cpp -I./imagenES
+$(OBJ)/ejercicio1.o : ejercicio1.cpp imagen
+	$(CC) -c -o $(OBJ)/ejercicio1.o ejercicio1.cpp -I$(INCLUDE)
 
-imagen : imagenS imagen.h imagen.cpp imagenES.o
-	$(CC) -c imagen.cpp -I$(INCLUDE)
+$(OBJ)/imagenES.o: $(INCLUDE)/imagenES.h $(INCLUDE)/imagenES.cpp
+	$(CC) -c -o $(OBJ)/imagenES.o $(INCLUDE)/imagenES.cpp -I./imagenES.h
 
-ejecutable1: ejercicio1 ejercicio1.o
-	$(CC) -o ejercicio1 ejercicio1.o imagen.o imagenES.o -I$(INCLUDE)
+$(OBJ)/imagen.o : imagen.h imagen.cpp 
+	$(CC) -c -o $(OBJ)/imagen.o imagen.cpp -I$(INCLUDE)
 
 
 clean:
