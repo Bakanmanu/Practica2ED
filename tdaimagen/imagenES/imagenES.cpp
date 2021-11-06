@@ -71,15 +71,15 @@ bool LeerCabecera (ifstream& f, int& fils, int& cols){
 
 // _____________________________________________________________________________
 
-unsigned char *LeerImagenPPM (const char *nombre, int& fils, int& cols){
-  unsigned char *res=0;
+byte *LeerImagenPPM (const char *nombre, int& fils, int& cols){
+  byte *res=0;
   fils=0;
   cols=0;
   ifstream f(nombre);
   
   if (LeerTipo(f)==IMG_PPM){
     if (LeerCabecera (f, fils, cols)){
-        res= new unsigned char[fils*cols*3];
+        res= new byte[fils*cols*3];
         f.read(reinterpret_cast<char *>(res),fils*cols*3);
         if (!f){
           delete[] res;
@@ -92,15 +92,15 @@ unsigned char *LeerImagenPPM (const char *nombre, int& fils, int& cols){
 
 // _____________________________________________________________________________
 
-unsigned char *LeerImagenPGM (const char *nombre, int& fils, int& cols){
-  unsigned char *res=0;
+byte *LeerImagenPGM (const char *nombre, int& fils, int& cols){
+  byte *res=0;
   fils=0;
   cols=0;
   ifstream f(nombre);
   
   if (LeerTipo(f)==IMG_PGM){
     if (LeerCabecera (f, fils, cols)){
-      res= new unsigned char[fils*cols];
+      res= new byte[fils*cols];
       f.read(reinterpret_cast<char *>(res),fils*cols);
       if (!f){
         delete[] res;
@@ -113,7 +113,7 @@ unsigned char *LeerImagenPGM (const char *nombre, int& fils, int& cols){
 
 // _____________________________________________________________________________
 
-bool EscribirImagenPPM (const char *nombre, const unsigned char *datos, 
+bool EscribirImagenPPM (const char *nombre, const byte *datos, 
                         const int fils, const int cols){
   ofstream f(nombre);
   bool res= true;
@@ -130,7 +130,7 @@ bool EscribirImagenPPM (const char *nombre, const unsigned char *datos,
 }
 // _____________________________________________________________________________
 
-bool EscribirImagenPGM (const char *nombre, const unsigned char *datos, 
+bool EscribirImagenPGM (const char *nombre, const byte *datos, 
                         const int fils, const int cols){
   ofstream f(nombre);
   bool res= true;
