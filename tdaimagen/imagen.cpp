@@ -121,14 +121,14 @@ Imagen& Imagen::operator=(const Imagen &I){
   	assert(fil < filas && col < cols);
   	return img[fil][col];
 
-  }
+}
 
-  const byte& Imagen::operator() (int fil, int col) const{
+const byte& Imagen::operator() (int fil, int col) const{
 
   	assert(fil < filas && col < cols);
   	return img[fil][col];
 
-  }
+}
 
 /*******************************************************************************
 ******************************* ENTRADA Y SALIDA *******************************

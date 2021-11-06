@@ -4,9 +4,11 @@
 // Implementacion del TDA imagen (imagen digital en niveles de gris).
 /****************************************************************************/
 
-#ifndef _IMAGEN_H
-#define _IMAGEN_H
-#include "imagenES.h"
+
+#ifndef IMAGEN_H
+#define IMAGEN_H
+#include "imagenES/imagenES.h"
+
 typedef unsigned char byte;
 
 /**
@@ -178,4 +180,5 @@ class Imagen{
         */
         void Umbral(const char * origen, const char * destino, int inf, int sup);
 };
+
 #endif
