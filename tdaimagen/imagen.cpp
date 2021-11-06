@@ -1,4 +1,5 @@
 #include "imagen.h"
+#include "imagenES/imagenES.h"
 #include <cassert>
 #include <iostream>
 #include "string.h"
@@ -135,7 +136,22 @@ const byte& Imagen::operator() (int fil, int col) const{
 *******************************************************************************/
 
 bool Imagen::LoadImagen(const char * nombre){
+	if(LeerTipoImagen(nombre) != IMG_PGM)
+		return false;
 
+	unsigned char *buffer = LeerImagenPGM(nombre, filas, cols);
+
+	if(buffer == 0)
+		return false;
+
+	memcpy(img, buffer, sizeof(unsigned char)*filas*cols);
+
+	delete[] buffer;
+
+	return true;
+}
+/*******************Version 1 load (Genera un core, accede fuera de memoria)
+bool Imagen::LoadImagen(const char * nombre){
 	const char *extension = ".pgm";
 	string str(nombre);
 
@@ -157,20 +173,18 @@ bool Imagen::LoadImagen(const char * nombre){
 			delete[] buf;
 			*this = aux;
 			return true;
-
 		}
 		else{
 			cout << "No se ha podido cargar la imagen" << endl;
 			return false;
 		}
-
 	}
 	else{
 		cout << "Formato de imagen incorrecto" << endl;
 		return false;
 	}
-
 }
+*/
 
 bool Imagen::SaveImagen(const char * nombre){
 
