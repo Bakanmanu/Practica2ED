@@ -69,7 +69,7 @@ int Imagen::getNumColumnas() const{
 void Imagen::setPixel(int fil, int col, byte valor){
 
 	assert(fil < filas && col < cols);
-	img[f][c] = valor;
+	img[fil][col] = valor;
 
 }
 
@@ -100,14 +100,14 @@ byte& Imagen::operator() (int fil, int col){
   	assert(fil < filas && col < cols);
   	return img[fil][col];
 
-  }
+}
 
-  const byte& Imagen::operator() (int fil, int col) const{
+const byte& Imagen::operator() (int fil, int col) const{
 
   	assert(fil < filas && col < cols);
   	return img[fil][col];
 
-  }
+}
 
 /*******************************************************************************
 ******************************* ENTRADA Y SALIDA *******************************

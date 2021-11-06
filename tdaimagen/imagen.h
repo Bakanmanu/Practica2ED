@@ -6,7 +6,7 @@
 
 #ifndef IMAGEN_H
 #define IMAGEN_H
-#include "imagenesES.h"
+#include "imagenES/imagenES.h"
 typedef unsigned char byte;
 
 /**
@@ -50,7 +50,7 @@ class Imagen{
         * @return Crea el objeto imagen
         */
 
-        Imagen(int filas, int cols)
+        Imagen(int filas, int cols);
 
       /**
         * @brief Constructor de copia de imagen
@@ -175,6 +175,7 @@ class Imagen{
         * @param suup, limite superior del umbral
         * @post la imagen se almacenará con la extensión .pgm
         */
-        void Umbral(const char * origen, const char * destino, int inf, int sup){
-}
+        void Umbral(const char * origen, const char * destino, int inf, int sup);
+};
+
 #endif
