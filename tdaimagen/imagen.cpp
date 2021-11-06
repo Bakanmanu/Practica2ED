@@ -5,6 +5,27 @@
 
 using namespace std;
 
+
+/*******************************************************************************
+*************************** FUNCIONES NECESARIAS *******************************
+*******************************************************************************/
+
+void Imagen::Swap(Imagen &I){
+
+	int filas_aux = filas;
+	filas = I.filas;
+	I.filas = filas_aux;
+
+	int cols_aux = cols;
+	cols = I.cols;
+	I.cols = cols_aux;
+
+	byte ** datos_aux = img;
+	img = I.img;
+	I.img = datos_aux;
+
+}
+
 /*******************************************************************************
 **************************** FUNCIONES BÁSICAS *********************************
 *******************************************************************************/
@@ -95,7 +116,7 @@ Imagen& Imagen::operator=(const Imagen &I){
 	return *this;
 }
 
-byte& Imagen::operator() (int fil, int col){
+	byte& Imagen::operator() (int fil, int col){
 
   	assert(fil < filas && col < cols);
   	return img[fil][col];
@@ -113,10 +134,10 @@ const byte& Imagen::operator() (int fil, int col) const{
 ******************************* ENTRADA Y SALIDA *******************************
 *******************************************************************************/
 
-bool Imagen::LoadImagen(const char * img){
+bool Imagen::LoadImagen(const char * nombre){
 
 	const char *extension = ".pgm";
-	string str(img);
+	string str(nombre);
 
 	if (strstr(nombre, extension) == NULL)
 		str += ".pgm";
@@ -164,7 +185,7 @@ bool Imagen::SaveImagen(const char * nombre){
 	unsigned char *buf = new unsigned char [filas*cols];
 	for (int i = 0; i < filas; i++)
 		for (int j = 0; j < cols; j++)
-			buf[i*cols + j] = datos [i][j];
+			buf[i*cols + j] = img [i][j];
 
 	if (EscribirImagenPGM(fichero, buf, filas, cols)){
 		delete[] buf;
@@ -181,7 +202,7 @@ bool Imagen::SaveImagen(const char * nombre){
 ********************************* UMBRAL ***************************************
 *******************************************************************************/
 
-void Umbral(const char * origen, const char * destino, int inf, int sup){
+void Imagen::Umbral(const char * origen, const char * destino, int inf, int sup){
 
 	Imagen umbral;
 

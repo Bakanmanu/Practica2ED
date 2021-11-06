@@ -4,13 +4,15 @@
 // Implementacion del TDA imagen (imagen digital en niveles de gris).
 /****************************************************************************/
 
+
 #ifndef IMAGEN_H
 #define IMAGEN_H
 #include "imagenES/imagenES.h"
+
 typedef unsigned char byte;
 
 /**
-  *  @brief T.D.A. Racional
+  *  @brief T.D.A. Imagen
   *
   * Una instancia @e I del tipo de datos abstracto @c Imagen es un objeto
   * representado por dos números enteros que representan el número de filas y
@@ -26,6 +28,7 @@ class Imagen{
     int filas;    // Número de filas de la imagen
     int cols;     // Número de columnas de la imagen
     byte **img;   // La imagen en si: una matriz dinamica 2D de bytes
+    void Swap(Imagen &I);
 
 
 
@@ -147,12 +150,12 @@ class Imagen{
 
       /**
         * @brief Carga un archivo que sea una imagen como  objeto de la clase
-        * @param img, nombre del archivo que contiene la imagen
+        * @param nombre, nombre del archivo que contiene la imagen
         * @return retorna true si se carga la imagen con éxito.
         * @pre el nombre debe tener extensión .pgm
         */
 
-      	bool LoadImagen(const char * img);
+      	bool LoadImagen(const char * nombre);
 
       /**
         * @brief Guarda una imagen formato .pgm a partir de un objeto de la clase
