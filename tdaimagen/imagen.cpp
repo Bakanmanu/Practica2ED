@@ -144,7 +144,10 @@ bool Imagen::LoadImagen(const char * nombre){
 	if(buffer == 0)
 		return false;
 
-	memcpy(img, buffer, sizeof(unsigned char)*filas*cols);
+	img = new byte*[filas];
+	for (int i = 0; i < filas; i++)
+		img[i] = new byte[cols];
+	memcpy(img, buffer, sizeof(byte)*filas*cols);
 
 	delete[] buffer;
 
@@ -187,7 +190,21 @@ bool Imagen::LoadImagen(const char * nombre){
 */
 
 bool Imagen::SaveImagen(const char * nombre){
+	
+	if(LeerTipoImagen(nombre) != IMG_PGM)
+		return false;
 
+	const char *extension = ".pgm";
+	string str(nombre);
+
+	if (strstr(nombre, extension)==NULL)
+		str += ".pgm";
+
+	char *fichero = strdup(str.c_str());
+
+	return EscribirImagenPGM(fichero, img[0], filas, cols);
+
+/* 
 	const char *extension = ".pgm";
 	string str(nombre);
 
@@ -208,7 +225,8 @@ bool Imagen::SaveImagen(const char * nombre){
 	else{
 		delete[] buf;
 		return false;
-	}
+	} 
+*/
 
 }
 
