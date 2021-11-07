@@ -147,9 +147,10 @@ bool Imagen::LoadImagen(const char * nombre){
 	img = new byte*[filas];
 	for (int i = 0; i < filas; i++)
 		img[i] = new byte[cols];
+
 	memcpy(img, buffer, sizeof(byte)*filas*cols);
 
-	delete[] buffer;
+	//delete[] buffer;								//Solo funciona si no libero la memoria, si se realiza el delete, da error (munpam_chunk(): invalid pointer)
 
 	return true;
 }
