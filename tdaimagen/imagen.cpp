@@ -184,25 +184,28 @@ void Imagen::SaveImagen(const char * fichero){
 double Imagen::Media(int pos_i,int pos_j, int height, int width){
 
 		assert((pos_i>=0)&&(pos_j>=0)&&(height>0)&&(width>0));
-		double suma;
-		int i,j;
+		long suma=0;
+		double resultado=0;
+		int i=0,j=0;
 		int lim_i = height+pos_i;
 		int lim_j = width+pos_j;
 
-		for(i=pos_i;i>lim_i;i++)
-			for(j=pos_j;j>lim_j;j++)
-				suma+=img[i][j];
 
-		return suma/(height*width);
+		for(i=pos_i;i<lim_i;i++){
+			for(j=pos_j;j<lim_j;j++) {
+				suma+=img[0][i*lim_i+j];
 
+			}
+		}
 
-
+		resultado = suma/(height*width);
+		return resultado;
 }
 
 byte Imagen::Umbral(){
 
 	const double epsilon=0'01;
-	double t=0, t_old=0;
+	int t=0, t_old=0;
 	double media_objeto=0,media_fondo=0;
 	int nelem_objeto=0, nelem_fondo=0,  tam=filas*cols;
 
@@ -210,7 +213,7 @@ byte Imagen::Umbral(){
 	while(abs(t-t_old)>=epsilon){
 		nelem_objeto=nelem_fondo=media_objeto=media_fondo=0;
 
-	for (int i=0; i<tam;i++){
+	for (int i=0; i<tam;i++)
 		if(img[0][i]>=t){
 			nelem_objeto++;
 			media_objeto+=img[0][i];
@@ -224,7 +227,18 @@ byte Imagen::Umbral(){
 		t_old=t;
 		t=(media_objeto+media_fondo)/2;
 }
-}
 	return ((byte)t);
 
+}
+
+void Imagen::AplicarUmbral(byte t){
+	int tam=filas*cols;
+	for (int i=0; i<tam;i++){
+		if(img[0][i]>=t){
+			img[0][i]= 255;
+		}
+		else{
+			img[0][i]=0;
+		}
+	}
 }

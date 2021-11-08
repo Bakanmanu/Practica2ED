@@ -19,6 +19,7 @@ void Menu(){
 
     char *entrada = new char[100];
     char *salida = new char[100];
+    byte u;
     int inf, sup ;
 
     switch (opcion)
@@ -53,8 +54,8 @@ void Menu(){
 
         //Introduciomos los valores de los umbrales
         cout << "Le efectuamos el umbral" << endl;
-        umbral.Umbral();
-
+        u = umbral.Umbral();
+        umbral.AplicarUmbral(u);
 
         //Fichero de salida
         cout << "Escriba el nombre con el que quiera guardar la imagen: " << endl;

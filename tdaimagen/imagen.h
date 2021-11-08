@@ -179,17 +179,30 @@ class Imagen{
 /*******************************************************************************
 ********************************* UMBRAL ***************************************
 *******************************************************************************/
-      double Media(int pos_i,int pos_j, int height, int width);
-      
+
       /**
-        * @brief Cambia los tonos de la imagen si no estan entre el umbral
-        * @param origen, nombre del archivo qe queremos abrir
-        * @param destino, nombre con el que queremos guardar el archivo
-        * @param inf, limite inferior del umbral
-        * @param suup, limite superior del umbral
-        * @post la imagen se almacenará con la extensión .pgm
+        * @brief Busca el tono intermedio de grises de la imagen
+        * @param pos_i, posicion de las filas desde la que inicializamos
+        * @param pos_j, posicion de las columnas desde la que inicializamos
+        * @param height, numero de filas
+        * @param width, numero de columnas
+        * @post un double de la media.
+        */
+
+        double Media(int pos_i,int pos_j, int height, int width);
+
+      /**
+        * @brief Calcula de forma automatica el valor del umbral
+        * @post Devuelve el valor del umbral.
         */
 
         byte Umbral();
+
+      /**
+        * @brief Aplica el umbral a una imagen
+        * @param t, es el valor del umbral
+        */
+
+        void AplicarUmbral(byte t);
 };
 #endif
