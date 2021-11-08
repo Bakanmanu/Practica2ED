@@ -15,6 +15,7 @@ void Menu(){
     }
 
     Imagen prueba;
+    Imagen umbral;
 
     char *entrada = new char[100];
     char *salida = new char[100];
@@ -37,6 +38,7 @@ void Menu(){
         cin >> salida;
         prueba.SaveImagen(salida);
 
+
       break;
 
       case 2:
@@ -46,20 +48,21 @@ void Menu(){
         //Subimos la foto
         cout << "Escriba el nombre de la imagen que quiera subir: " << endl;
         cin >> entrada;
-        cout << "Dimensiones de la imagen seleccionada: " << prueba.getNumFilas() << 'x' << prueba.getNumColumnas()<< endl;
+        umbral.LoadImagen(entrada);
+        cout << "Dimensiones de la imagen seleccionada: " << umbral.getNumFilas() << 'x' << umbral.getNumColumnas()<< endl;
 
         //Introduciomos los valores de los umbrales
-        cout << "Introduce los valores del Umbral" << endl;
-        cout << "Umbral superior: " ;
-        cin >> sup;
-        cout << "Umbral inferior: " ;
-        cin >> inf;
+        cout << "Le efectuamos el umbral" << endl;
+        umbral.Umbral();
+
 
         //Fichero de salida
         cout << "Escriba el nombre con el que quiera guardar la imagen: " << endl;
         cin >> salida;
+        umbral.SaveImagen(salida);
 
-        prueba.Umbral(entrada, salida, inf, sup );
+
+
         //prueba.SaveImagen(salida.c_str());
 
       break;

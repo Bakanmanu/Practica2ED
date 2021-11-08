@@ -4,11 +4,9 @@
 // Implementacion del TDA imagen (imagen digital en niveles de gris).
 /****************************************************************************/
 
-
-#ifndef IMAGEN_H
-#define IMAGEN_H
-#include "imagenES/imagenES.h"
-
+#ifndef _IMAGEN_H
+#define _IMAGEN_H
+#include "imagenES.h"
 typedef unsigned char byte;
 
 /**
@@ -44,6 +42,18 @@ class Imagen{
 
       	Imagen();
 
+        /**
+          * @brief Inicializador de la clase con paramentros
+          * @param fils, número de filas del objeto imagen
+          * @param columnas, número de columnas del objeto imagen
+          * @param buffer, donde guardaremos nuestra imagen
+          * @pre filas > 0 & Not NULL
+          * @pre cols > 0 & Not NULL
+          * @return Crea el objeto imagen
+          */
+
+        void Inicialize(int fils, int columnas, byte* buffer);
+
       /**
         * @brief Constructor de la clase con paramentros
         * @param filas, número de filas del objeto imagen
@@ -67,7 +77,7 @@ class Imagen{
         * @post se libera la memoria reservada
         */
 
-      	~Imagen();
+      	void Destruye();
 
 /*******************************************************************************
 **************************** GETTERS Y SETTERS *********************************
@@ -164,12 +174,13 @@ class Imagen{
         * @post la imagen se almacenará con la extensión .pgm
         */
 
-      	bool SaveImagen(const char * nombre);
+      	void SaveImagen(const char * nombre);
 
 /*******************************************************************************
 ********************************* UMBRAL ***************************************
 *******************************************************************************/
-
+      double Media(int pos_i,int pos_j, int height, int width);
+      
       /**
         * @brief Cambia los tonos de la imagen si no estan entre el umbral
         * @param origen, nombre del archivo qe queremos abrir
@@ -178,7 +189,7 @@ class Imagen{
         * @param suup, limite superior del umbral
         * @post la imagen se almacenará con la extensión .pgm
         */
-        void Umbral(const char * origen, const char * destino, int inf, int sup);
-};
 
+        byte Umbral();
+};
 #endif

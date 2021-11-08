@@ -1,5 +1,4 @@
 #include "imagen.h"
-#include "imagenES/imagenES.h"
 #include <cassert>
 #include <iostream>
 #include "string.h"
@@ -39,6 +38,29 @@ Imagen::Imagen(){
 
 }
 
+void	Imagen::Inicialize(int fils, int columnas, byte * buffer){
+		if((fils <=0) && (columnas <=0)){
+		filas =0;
+		cols =0;
+		img =0;
+		if(buffer!=0){
+			delete [] buffer;
+			cerr << "Error no se puede almacenar";
+			exit(1);
+		}
+
+	}else{
+		filas=fils;
+		cols = columnas;
+		img = new byte * [filas];
+		if (buffer!=0)
+			img[0] = buffer;
+		else
+			img[0] = new byte [filas * cols];
+	}
+
+}
+
 Imagen::Imagen(int filas, int cols){
 
 	filas = filas;
@@ -63,11 +85,10 @@ Imagen::Imagen(const Imagen &I){
 
 }
 
-Imagen::~Imagen(){
+void Imagen::Destruye(){
 
-  for (int i = 0; i < filas; i++)
-		delete[] img[i];
-
+  if (img!=0)
+		delete [] img[0];
 	delete[] img;
 
 }
@@ -122,134 +143,88 @@ Imagen& Imagen::operator=(const Imagen &I){
   	assert(fil < filas && col < cols);
   	return img[fil][col];
 
-}
+  }
 
-const byte& Imagen::operator() (int fil, int col) const{
+  const byte& Imagen::operator() (int fil, int col) const{
 
   	assert(fil < filas && col < cols);
   	return img[fil][col];
 
-}
+  }
 
 /*******************************************************************************
 ******************************* ENTRADA Y SALIDA *******************************
 *******************************************************************************/
 
-bool Imagen::LoadImagen(const char * nombre){
-	if(LeerTipoImagen(nombre) != IMG_PGM)
+bool Imagen::LoadImagen(const char * fichero){
+
+	if (LeerTipoImagen(fichero) != IMG_PGM){
+		return false;
+		cout << "Formato Incorrecto"<<endl;
+	}
+	byte * buffer = LeerImagenPGM (fichero, filas, cols);
+	if (!buffer)
 		return false;
 
-	unsigned char *buffer = LeerImagenPGM(nombre, filas, cols);
-
-	if(buffer == 0)
-		return false;
-
-	img = new byte*[filas];
-	for (int i = 0; i < filas; i++)
-		img[i] = new byte[cols];
-
-	memcpy(img, buffer, sizeof(byte)*filas*cols);
-
-	//delete[] buffer;								//Solo funciona si no libero la memoria, si se realiza el delete, da error (munpam_chunk(): invalid pointer)
-
+	Destruye();
+	cout <<filas;
+	Inicialize(filas,cols,buffer);
 	return true;
 }
-/*******************Version 1 load (Genera un core, accede fuera de memoria)
-bool Imagen::LoadImagen(const char * nombre){
-	const char *extension = ".pgm";
-	string str(nombre);
 
-	if (strstr(nombre, extension) == NULL)
-		str += ".pgm";
+void Imagen::SaveImagen(const char * fichero){
+		EscribirImagenPGM(fichero, img[0], filas, cols);
 
-	char * fichero = strdup(str.c_str());
-
-	TipoImagen t = LeerTipoImagen(fichero);
-	if (t==IMG_PGM){
-		int f, c;
-		unsigned char *buf = LeerImagenPGM (fichero, f, c);
-		if (buf!=0){
-			Imagen aux(f, c);
-			for (int i = 0; i < f; i++)
-				for (int j = 0; j < c; j++)
-					aux(i, j) = buf[i*c + j];
-
-			delete[] buf;
-			*this = aux;
-			return true;
-		}
-		else{
-			cout << "No se ha podido cargar la imagen" << endl;
-			return false;
-		}
-	}
-	else{
-		cout << "Formato de imagen incorrecto" << endl;
-		return false;
-	}
-}
-*/
-
-bool Imagen::SaveImagen(const char * nombre){
-	
-	if(LeerTipoImagen(nombre) != IMG_PGM)
-		return false;
-
-	const char *extension = ".pgm";
-	string str(nombre);
-
-	if (strstr(nombre, extension)==NULL)
-		str += ".pgm";
-
-	char *fichero = strdup(str.c_str());
-
-	return EscribirImagenPGM(fichero, img[0], filas, cols);
-
-/* 
-	const char *extension = ".pgm";
-	string str(nombre);
-
-	if (strstr(nombre, extension) == NULL)
-		str += ".pgm";
-
-	char * fichero = strdup(str.c_str());
-
-	unsigned char *buf = new unsigned char [filas*cols];
-	for (int i = 0; i < filas; i++)
-		for (int j = 0; j < cols; j++)
-			buf[i*cols + j] = img [i][j];
-
-	if (EscribirImagenPGM(fichero, buf, filas, cols)){
-		delete[] buf;
-		return true;
-	}
-	else{
-		delete[] buf;
-		return false;
-	} 
-*/
 
 }
 
 /*******************************************************************************
 ********************************* UMBRAL ***************************************
 *******************************************************************************/
+double Imagen::Media(int pos_i,int pos_j, int height, int width){
 
-void Imagen::Umbral(const char * origen, const char * destino, int inf, int sup){
+		assert((pos_i>=0)&&(pos_j>=0)&&(height>0)&&(width>0));
+		double suma;
+		int i,j;
+		int lim_i = height+pos_i;
+		int lim_j = width+pos_j;
 
-	Imagen umbral;
+		for(i=pos_i;i>lim_i;i++)
+			for(j=pos_j;j>lim_j;j++)
+				suma+=img[i][j];
 
-	umbral.LoadImagen(origen);
+		return suma/(height*width);
 
 
-	for (int i = 0; i < umbral.getNumFilas(); i++)
-		for (int j = 0; j < umbral.getNumColumnas(); j++)
-			if (umbral(i,j) <= inf || umbral(i,j) >= sup)
-				umbral(i,j) = 255;
 
-	if (umbral.SaveImagen(destino))
-		cout << "Se ha aplicado el umbral con exito" << endl;
-	else
-		cout << "ERROR: No se ha aplicado el umbral" << endl;
+}
+
+byte Imagen::Umbral(){
+
+	const double epsilon=0'01;
+	double t=0, t_old=0;
+	double media_objeto=0,media_fondo=0;
+	int nelem_objeto=0, nelem_fondo=0,  tam=filas*cols;
+
+	t=Media(0,0,filas,cols);
+	while(abs(t-t_old)>=epsilon){
+		nelem_objeto=nelem_fondo=media_objeto=media_fondo=0;
+
+	for (int i=0; i<tam;i++){
+		if(img[0][i]>=t){
+			nelem_objeto++;
+			media_objeto+=img[0][i];
+		}
+		else{
+			nelem_fondo++;
+			media_fondo+=img[0][i];
+		}
+		media_objeto = media_objeto/nelem_objeto;
+		media_fondo = media_fondo/nelem_fondo;
+		t_old=t;
+		t=(media_objeto+media_fondo)/2;
+}
+}
+	return ((byte)t);
 
 }
