@@ -204,5 +204,33 @@ class Imagen{
         */
 
         void AplicarUmbral(byte t);
+
+/*******************************************************************************
+********************************* CONTRASTE ************************************
+*******************************************************************************/
+
+      /**
+        * @brief Calcula el byte maximo de una imagen
+        * @post Devuelve el byte maximo
+        */
+
+        byte Max(void);
+
+      /**
+        * @brief Calcula el byte minimo de una imagen
+        * @post Devuelve el byte minimo
+        */
+
+        byte Min(void);
+
+
+      /**
+        * @brief Efectua el contraste a una imagen a partir del min y max que le pasemos.
+        * @param minimo, valor minimo que queremos que tenga el byte de la imagen
+        * @param maximo, valor maximo que queremos que tenga el byte de la imagen
+        * @post la imagen contrastada.
+        */
+
+        void AjustaContraste(byte minimo, byte maximo);
 };
 #endif

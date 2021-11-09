@@ -167,7 +167,6 @@ bool Imagen::LoadImagen(const char * fichero){
 		return false;
 
 	Destruye();
-	cout <<filas;
 	Inicialize(filas,cols,buffer);
 	return true;
 }
@@ -241,4 +240,45 @@ void Imagen::AplicarUmbral(byte t){
 			img[0][i]=0;
 		}
 	}
+}
+
+/*******************************************************************************
+********************************* CONTRASTE ************************************
+*******************************************************************************/
+
+byte Imagen::Max(void){
+	assert((filas>0)&&(cols>0));
+	int tam = filas*cols;
+  int maximo = img[0][0];
+
+  for(int i=0;i<tam;i++){
+    if(maximo < img[0][i]){
+			maximo=img[0][i];
+		}
+  }
+	return ((byte)maximo);
+}
+
+byte Imagen::Min(void){
+	assert((filas>0)&&(cols>0));
+	int tam = filas*cols;
+  int minimo = img[0][0];
+
+  for (int i=0;i<tam;i++){
+    if (minimo > img[0][i])
+			minimo=img[0][i];
+  }
+	return ((byte)minimo);
+}
+
+void Imagen::AjustaContraste(byte minimo, byte maximo){
+  double escala;
+  int tam = filas*cols;
+  byte minimo_actual = Min();
+  byte maximo_actual = Max();
+  double cociente = (double) (maximo-minimo) / (double) (maximo_actual-minimo_actual);
+
+  for (int i=0; i< tam; i++){
+    img[0][i] = minimo + cociente * (img[0][i] - minimo_actual);
+  }
 }
