@@ -1,0 +1,596 @@
+\hypertarget{class_imagen}{}\section{Imagen Class Reference}
+\label{class_imagen}\index{Imagen@{Imagen}}
+
+
+T.\+D.\+A. \hyperlink{class_imagen}{Imagen}.  
+
+
+
+
+{\ttfamily \#include $<$imagen.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_imagen_ab2e649aa7a105155c7bfdb846abf0528}\label{class_imagen_ab2e649aa7a105155c7bfdb846abf0528}} 
+\hyperlink{class_imagen_ab2e649aa7a105155c7bfdb846abf0528}{Imagen} ()
+\begin{DoxyCompactList}\small\item\em Constructor por defecto de la clase. \end{DoxyCompactList}\item 
+void \hyperlink{class_imagen_a0cbf4969fb5bfdd0ef60cfd390714580}{Inicialize} (int fils, int columnas, byte $\ast$buffer)
+\begin{DoxyCompactList}\small\item\em Inicializador de la clase con paramentros. \end{DoxyCompactList}\item 
+\hyperlink{class_imagen_ad4943ff0e2de31d4c25a879030f3ebf2}{Imagen} (int filas, int cols)
+\begin{DoxyCompactList}\small\item\em Constructor de la clase con paramentros. \end{DoxyCompactList}\item 
+\hyperlink{class_imagen_a5c25efc6e460f6de605942460db48057}{Imagen} (const \hyperlink{class_imagen}{Imagen} \&I)
+\begin{DoxyCompactList}\small\item\em Constructor de copia de imagen. \end{DoxyCompactList}\item 
+void \hyperlink{class_imagen_ab0161e7224c194d421c475eeae178708}{Destruye} ()
+\begin{DoxyCompactList}\small\item\em Destructor de la clase. \end{DoxyCompactList}\item 
+int \hyperlink{class_imagen_a4827c3f06be3f308e391cbd60062bda6}{get\+Num\+Filas} () const
+\begin{DoxyCompactList}\small\item\em Get del número de filas. \end{DoxyCompactList}\item 
+int \hyperlink{class_imagen_afee6ffa275f3eb4665dc1e7aaa8dfbd7}{get\+Num\+Columnas} () const
+\begin{DoxyCompactList}\small\item\em Get del número de columnas. \end{DoxyCompactList}\item 
+void \hyperlink{class_imagen_a2b83d6eb9fe1b76848f11baad84cb6d4}{set\+Pixel} (int fil, int col, byte valor)
+\begin{DoxyCompactList}\small\item\em Asignación de un valor de gris a un pixel. \end{DoxyCompactList}\item 
+byte \hyperlink{class_imagen_ab825146bb85e9b86f8bdcc88c71cafae}{get\+Pixel} (int fil, int col) const
+\begin{DoxyCompactList}\small\item\em Obtiene el valor del pixel de la fila y columna introducidas. \end{DoxyCompactList}\item 
+\hyperlink{class_imagen}{Imagen} \& \hyperlink{class_imagen_aeecce0f8947fbefd2468e8b43ac33f4a}{operator=} (const \hyperlink{class_imagen}{Imagen} \&I)
+\begin{DoxyCompactList}\small\item\em Operador de Asignación. \end{DoxyCompactList}\item 
+byte \& \hyperlink{class_imagen_a5bf74bd4c1572323ece102ec67c7e1dd}{operator()} (int fil, int col)
+\begin{DoxyCompactList}\small\item\em Sobrecarga del operador() \end{DoxyCompactList}\item 
+const byte \& \hyperlink{class_imagen_a21594449ed38ecd66afe2c5cb95caf63}{operator()} (int fil, int col) const
+\begin{DoxyCompactList}\small\item\em Sobrecarga del operador() const. \end{DoxyCompactList}\item 
+bool \hyperlink{class_imagen_af18c42e549bc389f282a0d2bb92d135c}{Load\+Imagen} (const char $\ast$nombre)
+\begin{DoxyCompactList}\small\item\em Carga un archivo que sea una imagen como objeto de la clase. \end{DoxyCompactList}\item 
+void \hyperlink{class_imagen_a01090e15cc72178a0d26dd6b9e67b398}{Save\+Imagen} (const char $\ast$nombre)
+\begin{DoxyCompactList}\small\item\em Guarda una imagen formato .pgm a partir de un objeto de la clase. \end{DoxyCompactList}\item 
+double \hyperlink{class_imagen_abfdf09ba5b155a5238afdd648f3b289a}{Media} (int pos\+\_\+i, int pos\+\_\+j, int height, int width)
+\begin{DoxyCompactList}\small\item\em Busca el tono intermedio de grises de la imagen. \end{DoxyCompactList}\item 
+byte \hyperlink{class_imagen_a8b208fc64ea4033e6a557a8c880c5c27}{Umbral} ()
+\begin{DoxyCompactList}\small\item\em Calcula de forma automatica el valor del umbral. \end{DoxyCompactList}\item 
+void \hyperlink{class_imagen_ab666abb816fa66e36e68834d9d3057fb}{Aplicar\+Umbral} (byte t)
+\begin{DoxyCompactList}\small\item\em Aplica el umbral a una imagen. \end{DoxyCompactList}\item 
+byte \hyperlink{class_imagen_af69ad3522a0e03ba4e30cd06605a3ab0}{Max} (void)
+\begin{DoxyCompactList}\small\item\em Calcula el byte maximo de una imagen. \end{DoxyCompactList}\item 
+byte \hyperlink{class_imagen_adeed73bed8b0ed569e4151ebd26ffe54}{Min} (void)
+\begin{DoxyCompactList}\small\item\em Calcula el byte minimo de una imagen. \end{DoxyCompactList}\item 
+void \hyperlink{class_imagen_ae38179e4f7fd4a2a7171135a45eef0da}{Ajusta\+Contraste} (byte minimo, byte maximo)
+\begin{DoxyCompactList}\small\item\em Efectua el contraste a una imagen a partir del min y max que le pasemos. \end{DoxyCompactList}\item 
+void \hyperlink{class_imagen_a845f920cc7180b4419025b6e863958f6}{Zoom} (int x1, int y1, int x2, int y2)
+\begin{DoxyCompactList}\small\item\em Realiza un zoom en una porción de la imagen mediante interpolación. \end{DoxyCompactList}\item 
+bool \hyperlink{class_imagen_aae6fb4b642b1d59482de7920c381bda4}{Es\+Cuadrada} (int x1, int y1, int x2, int y2)
+\begin{DoxyCompactList}\small\item\em Calcula si la porción dada es cuadrada o no. \end{DoxyCompactList}\item 
+byte $\ast$ \hyperlink{class_imagen_ac59016db29b9e8857e41a5c0e47b213a}{Porcion\+Imagen} (unsigned char $\ast$buffer, int x1, int y1, int x2, int y2)
+\begin{DoxyCompactList}\small\item\em Recorta la porcion de la imagen a la que queremos hacer zoom. \end{DoxyCompactList}\item 
+byte \hyperlink{class_imagen_a0cd53e6edab66bd64a9e4bec13c77f43}{Media\+Zoom} (byte valor1, byte valor2)
+\begin{DoxyCompactList}\small\item\em , Calcula la media por exceso de los valores para realizar la interpolacion. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+T.\+D.\+A. \hyperlink{class_imagen}{Imagen}. 
+
+Una instancia {\itshape I} del tipo de datos abstracto {\ttfamily \hyperlink{class_imagen}{Imagen}} es un objeto representado por dos números enteros que representan el número de filas y de columnas respectivamente, así como un array bidimensional de char para representar la imagen en forma de matriz
+
+\begin{DoxyAuthor}{Author}
+Claudia Salado Méndez 
+
+Manuel Zafra Mota 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+Noviembre 2021 
+\end{DoxyDate}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_imagen_ad4943ff0e2de31d4c25a879030f3ebf2}\label{class_imagen_ad4943ff0e2de31d4c25a879030f3ebf2}} 
+\index{Imagen@{Imagen}!Imagen@{Imagen}}
+\index{Imagen@{Imagen}!Imagen@{Imagen}}
+\subsubsection{\texorpdfstring{Imagen()}{Imagen()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Imagen\+::\+Imagen (\begin{DoxyParamCaption}\item[{int}]{filas,  }\item[{int}]{cols }\end{DoxyParamCaption})}
+
+
+
+Constructor de la clase con paramentros. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filas,número} & de filas del objeto imagen \\
+\hline
+{\em cols,número} & de columnas del objeto imagen \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+filas $>$ 0 \& Not N\+U\+LL 
+
+cols $>$ 0 \& Not N\+U\+LL 
+\end{DoxyPrecond}
+\begin{DoxyReturn}{Returns}
+Crea el objeto imagen 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_imagen_a5c25efc6e460f6de605942460db48057}\label{class_imagen_a5c25efc6e460f6de605942460db48057}} 
+\index{Imagen@{Imagen}!Imagen@{Imagen}}
+\index{Imagen@{Imagen}!Imagen@{Imagen}}
+\subsubsection{\texorpdfstring{Imagen()}{Imagen()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Imagen\+::\+Imagen (\begin{DoxyParamCaption}\item[{const \hyperlink{class_imagen}{Imagen} \&}]{I }\end{DoxyParamCaption})}
+
+
+
+Constructor de copia de imagen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em I,es} & al objeto imagen que vamos a copiar \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_imagen_ae38179e4f7fd4a2a7171135a45eef0da}\label{class_imagen_ae38179e4f7fd4a2a7171135a45eef0da}} 
+\index{Imagen@{Imagen}!Ajusta\+Contraste@{Ajusta\+Contraste}}
+\index{Ajusta\+Contraste@{Ajusta\+Contraste}!Imagen@{Imagen}}
+\subsubsection{\texorpdfstring{Ajusta\+Contraste()}{AjustaContraste()}}
+{\footnotesize\ttfamily void Imagen\+::\+Ajusta\+Contraste (\begin{DoxyParamCaption}\item[{byte}]{minimo,  }\item[{byte}]{maximo }\end{DoxyParamCaption})}
+
+
+
+Efectua el contraste a una imagen a partir del min y max que le pasemos. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em minimo,valor} & minimo que queremos que tenga el byte de la imagen \\
+\hline
+{\em maximo,valor} & maximo que queremos que tenga el byte de la imagen \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondition}
+la imagen contrastada. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{class_imagen_ab666abb816fa66e36e68834d9d3057fb}\label{class_imagen_ab666abb816fa66e36e68834d9d3057fb}} 
+\index{Imagen@{Imagen}!Aplicar\+Umbral@{Aplicar\+Umbral}}
+\index{Aplicar\+Umbral@{Aplicar\+Umbral}!Imagen@{Imagen}}
+\subsubsection{\texorpdfstring{Aplicar\+Umbral()}{AplicarUmbral()}}
+{\footnotesize\ttfamily void Imagen\+::\+Aplicar\+Umbral (\begin{DoxyParamCaption}\item[{byte}]{t }\end{DoxyParamCaption})}
+
+
+
+Aplica el umbral a una imagen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t,es} & el valor del umbral \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_imagen_ab0161e7224c194d421c475eeae178708}\label{class_imagen_ab0161e7224c194d421c475eeae178708}} 
+\index{Imagen@{Imagen}!Destruye@{Destruye}}
+\index{Destruye@{Destruye}!Imagen@{Imagen}}
+\subsubsection{\texorpdfstring{Destruye()}{Destruye()}}
+{\footnotesize\ttfamily void Imagen\+::\+Destruye (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor de la clase. 
+
+\begin{DoxyPostcond}{Postcondition}
+se libera la memoria reservada 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{class_imagen_aae6fb4b642b1d59482de7920c381bda4}\label{class_imagen_aae6fb4b642b1d59482de7920c381bda4}} 
+\index{Imagen@{Imagen}!Es\+Cuadrada@{Es\+Cuadrada}}
+\index{Es\+Cuadrada@{Es\+Cuadrada}!Imagen@{Imagen}}
+\subsubsection{\texorpdfstring{Es\+Cuadrada()}{EsCuadrada()}}
+{\footnotesize\ttfamily bool Imagen\+::\+Es\+Cuadrada (\begin{DoxyParamCaption}\item[{int}]{x1,  }\item[{int}]{y1,  }\item[{int}]{x2,  }\item[{int}]{y2 }\end{DoxyParamCaption})}
+
+
+
+Calcula si la porción dada es cuadrada o no. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x1,Valor} & de la coordenada x de la esquina superior izquierda. \\
+\hline
+{\em y1,Valor} & de la coordenada y de la esquina superior izquierda. \\
+\hline
+{\em x2,Valor} & de la coordenada x de la esquina inferior derecha. \\
+\hline
+{\em y2,Valor} & de la coordenada y de la esquina inferior derecha. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Devuelve si la porción generada es cuadrada o no. 
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+x1 $>$ 0 \& N\+OT N\+U\+LL 
+
+y1 $>$ 0 \& N\+OT N\+U\+LL 
+
+x2 $>$ 0 \& N\+OT N\+U\+LL 
+
+y2 $>$ 0 \& N\+OT N\+U\+LL 
+
+x1 $<$ x2 
+
+y1 $<$ y2 
+\end{DoxyPrecond}
+\mbox{\Hypertarget{class_imagen_afee6ffa275f3eb4665dc1e7aaa8dfbd7}\label{class_imagen_afee6ffa275f3eb4665dc1e7aaa8dfbd7}} 
+\index{Imagen@{Imagen}!get\+Num\+Columnas@{get\+Num\+Columnas}}
+\index{get\+Num\+Columnas@{get\+Num\+Columnas}!Imagen@{Imagen}}
+\subsubsection{\texorpdfstring{get\+Num\+Columnas()}{getNumColumnas()}}
+{\footnotesize\ttfamily int Imagen\+::get\+Num\+Columnas (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get del número de columnas. 
+
+\begin{DoxyReturn}{Returns}
+Devuelve el número de columnas de la matriz de imagen 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_imagen_a4827c3f06be3f308e391cbd60062bda6}\label{class_imagen_a4827c3f06be3f308e391cbd60062bda6}} 
+\index{Imagen@{Imagen}!get\+Num\+Filas@{get\+Num\+Filas}}
+\index{get\+Num\+Filas@{get\+Num\+Filas}!Imagen@{Imagen}}
+\subsubsection{\texorpdfstring{get\+Num\+Filas()}{getNumFilas()}}
+{\footnotesize\ttfamily int Imagen\+::get\+Num\+Filas (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get del número de filas. 
+
+\begin{DoxyReturn}{Returns}
+Devuelve el número de filas de la matriz de imagen 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_imagen_ab825146bb85e9b86f8bdcc88c71cafae}\label{class_imagen_ab825146bb85e9b86f8bdcc88c71cafae}} 
+\index{Imagen@{Imagen}!get\+Pixel@{get\+Pixel}}
+\index{get\+Pixel@{get\+Pixel}!Imagen@{Imagen}}
+\subsubsection{\texorpdfstring{get\+Pixel()}{getPixel()}}
+{\footnotesize\ttfamily byte Imagen\+::get\+Pixel (\begin{DoxyParamCaption}\item[{int}]{fil,  }\item[{int}]{col }\end{DoxyParamCaption}) const}
+
+
+
+Obtiene el valor del pixel de la fila y columna introducidas. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fil,número} & de la fila del pixel \\
+\hline
+{\em col,número} & de la columna del pixel \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+el valor entre 0 y 255 (el color) del pixel 
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+fil $>$= 0 \& N\+OT N\+U\+LL 
+
+col $>$= 0 \& N\+OT N\+U\+LL 
+\end{DoxyPrecond}
+\mbox{\Hypertarget{class_imagen_a0cbf4969fb5bfdd0ef60cfd390714580}\label{class_imagen_a0cbf4969fb5bfdd0ef60cfd390714580}} 
+\index{Imagen@{Imagen}!Inicialize@{Inicialize}}
+\index{Inicialize@{Inicialize}!Imagen@{Imagen}}
+\subsubsection{\texorpdfstring{Inicialize()}{Inicialize()}}
+{\footnotesize\ttfamily void Imagen\+::\+Inicialize (\begin{DoxyParamCaption}\item[{int}]{fils,  }\item[{int}]{columnas,  }\item[{byte $\ast$}]{buffer }\end{DoxyParamCaption})}
+
+
+
+Inicializador de la clase con paramentros. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fils,número} & de filas del objeto imagen \\
+\hline
+{\em columnas,número} & de columnas del objeto imagen \\
+\hline
+{\em buffer,donde} & guardaremos nuestra imagen \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+filas $>$ 0 \& Not N\+U\+LL 
+
+cols $>$ 0 \& Not N\+U\+LL 
+\end{DoxyPrecond}
+\begin{DoxyReturn}{Returns}
+Crea el objeto imagen 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_imagen_af18c42e549bc389f282a0d2bb92d135c}\label{class_imagen_af18c42e549bc389f282a0d2bb92d135c}} 
+\index{Imagen@{Imagen}!Load\+Imagen@{Load\+Imagen}}
+\index{Load\+Imagen@{Load\+Imagen}!Imagen@{Imagen}}
+\subsubsection{\texorpdfstring{Load\+Imagen()}{LoadImagen()}}
+{\footnotesize\ttfamily bool Imagen\+::\+Load\+Imagen (\begin{DoxyParamCaption}\item[{const char $\ast$}]{nombre }\end{DoxyParamCaption})}
+
+
+
+Carga un archivo que sea una imagen como objeto de la clase. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nombre,nombre} & del archivo que contiene la imagen \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+retorna true si se carga la imagen con éxito. 
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+el nombre debe tener extensión .pgm 
+\end{DoxyPrecond}
+\mbox{\Hypertarget{class_imagen_af69ad3522a0e03ba4e30cd06605a3ab0}\label{class_imagen_af69ad3522a0e03ba4e30cd06605a3ab0}} 
+\index{Imagen@{Imagen}!Max@{Max}}
+\index{Max@{Max}!Imagen@{Imagen}}
+\subsubsection{\texorpdfstring{Max()}{Max()}}
+{\footnotesize\ttfamily byte Imagen\+::\+Max (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Calcula el byte maximo de una imagen. 
+
+\begin{DoxyPostcond}{Postcondition}
+Devuelve el byte maximo 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{class_imagen_abfdf09ba5b155a5238afdd648f3b289a}\label{class_imagen_abfdf09ba5b155a5238afdd648f3b289a}} 
+\index{Imagen@{Imagen}!Media@{Media}}
+\index{Media@{Media}!Imagen@{Imagen}}
+\subsubsection{\texorpdfstring{Media()}{Media()}}
+{\footnotesize\ttfamily double Imagen\+::\+Media (\begin{DoxyParamCaption}\item[{int}]{pos\+\_\+i,  }\item[{int}]{pos\+\_\+j,  }\item[{int}]{height,  }\item[{int}]{width }\end{DoxyParamCaption})}
+
+
+
+Busca el tono intermedio de grises de la imagen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos\+\_\+i,posicion} & de las filas desde la que inicializamos \\
+\hline
+{\em pos\+\_\+j,posicion} & de las columnas desde la que inicializamos \\
+\hline
+{\em height,numero} & de filas \\
+\hline
+{\em width,numero} & de columnas \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondition}
+un double de la media. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{class_imagen_a0cd53e6edab66bd64a9e4bec13c77f43}\label{class_imagen_a0cd53e6edab66bd64a9e4bec13c77f43}} 
+\index{Imagen@{Imagen}!Media\+Zoom@{Media\+Zoom}}
+\index{Media\+Zoom@{Media\+Zoom}!Imagen@{Imagen}}
+\subsubsection{\texorpdfstring{Media\+Zoom()}{MediaZoom()}}
+{\footnotesize\ttfamily byte Imagen\+::\+Media\+Zoom (\begin{DoxyParamCaption}\item[{byte}]{valor1,  }\item[{byte}]{valor2 }\end{DoxyParamCaption})}
+
+
+
+, Calcula la media por exceso de los valores para realizar la interpolacion. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em valor1,Primer} & valor con el que hacer la media. \\
+\hline
+{\em valor2,Segundo} & valor con el que hacer la media. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+, Devuelve la media por exceso de ambos valores dados. 
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+valor1 $<$= 0 \& N\+OT N\+U\+LL 
+
+valor2 $<$= 0 \& N\+OT N\+U\+LL 
+\end{DoxyPrecond}
+\mbox{\Hypertarget{class_imagen_adeed73bed8b0ed569e4151ebd26ffe54}\label{class_imagen_adeed73bed8b0ed569e4151ebd26ffe54}} 
+\index{Imagen@{Imagen}!Min@{Min}}
+\index{Min@{Min}!Imagen@{Imagen}}
+\subsubsection{\texorpdfstring{Min()}{Min()}}
+{\footnotesize\ttfamily byte Imagen\+::\+Min (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Calcula el byte minimo de una imagen. 
+
+\begin{DoxyPostcond}{Postcondition}
+Devuelve el byte minimo 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{class_imagen_a5bf74bd4c1572323ece102ec67c7e1dd}\label{class_imagen_a5bf74bd4c1572323ece102ec67c7e1dd}} 
+\index{Imagen@{Imagen}!operator()@{operator()}}
+\index{operator()@{operator()}!Imagen@{Imagen}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily byte \& Imagen\+::operator() (\begin{DoxyParamCaption}\item[{int}]{fil,  }\item[{int}]{col }\end{DoxyParamCaption})}
+
+
+
+Sobrecarga del operador() 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fil} & número de la fila del pixel \\
+\hline
+{\em col} & número de la columna del pixel \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+valor del pixel comprendido entre 0 y 255 
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+fil $>$= 0 \& N\+OT N\+U\+LL 
+
+col $>$= 0 \& N\+OT N\+U\+LL 
+\end{DoxyPrecond}
+\mbox{\Hypertarget{class_imagen_a21594449ed38ecd66afe2c5cb95caf63}\label{class_imagen_a21594449ed38ecd66afe2c5cb95caf63}} 
+\index{Imagen@{Imagen}!operator()@{operator()}}
+\index{operator()@{operator()}!Imagen@{Imagen}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const byte \& Imagen\+::operator() (\begin{DoxyParamCaption}\item[{int}]{fil,  }\item[{int}]{col }\end{DoxyParamCaption}) const}
+
+
+
+Sobrecarga del operador() const. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fil} & número de la fila del pixel \\
+\hline
+{\em col} & número de la columna del pixel \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+valor del pixel comprendido entre 0 y 255 
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+fil $>$= 0 \& N\+OT N\+U\+LL 
+
+col $>$= 0 \& N\+OT N\+U\+LL 
+\end{DoxyPrecond}
+\mbox{\Hypertarget{class_imagen_aeecce0f8947fbefd2468e8b43ac33f4a}\label{class_imagen_aeecce0f8947fbefd2468e8b43ac33f4a}} 
+\index{Imagen@{Imagen}!operator=@{operator=}}
+\index{operator=@{operator=}!Imagen@{Imagen}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \hyperlink{class_imagen}{Imagen} \& Imagen\+::operator= (\begin{DoxyParamCaption}\item[{const \hyperlink{class_imagen}{Imagen} \&}]{I }\end{DoxyParamCaption})}
+
+
+
+Operador de Asignación. 
+
+\begin{DoxyReturn}{Returns}
+devuelve el control del objeto 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_imagen_ac59016db29b9e8857e41a5c0e47b213a}\label{class_imagen_ac59016db29b9e8857e41a5c0e47b213a}} 
+\index{Imagen@{Imagen}!Porcion\+Imagen@{Porcion\+Imagen}}
+\index{Porcion\+Imagen@{Porcion\+Imagen}!Imagen@{Imagen}}
+\subsubsection{\texorpdfstring{Porcion\+Imagen()}{PorcionImagen()}}
+{\footnotesize\ttfamily byte $\ast$ Imagen\+::\+Porcion\+Imagen (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{buffer,  }\item[{int}]{x1,  }\item[{int}]{y1,  }\item[{int}]{x2,  }\item[{int}]{y2 }\end{DoxyParamCaption})}
+
+
+
+Recorta la porcion de la imagen a la que queremos hacer zoom. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer,Array} & que contiene la imagen de donde queremos recortar la porcion a la que hacer el zoom \\
+\hline
+{\em x1,Valor} & de la coordenada x de la esquina superior izquierda. \\
+\hline
+{\em y1,Valor} & de la coordenada y de la esquina superior izquierda. \\
+\hline
+{\em x2,Valor} & de la coordenada x de la esquina inferior derecha. \\
+\hline
+{\em y2,Valor} & de la coordenada y de la esquina inferior derecha. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+, Devuelve un buffer con la porcion recortada de la imagen. 
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+x1 $>$ 0 \& N\+OT N\+U\+LL 
+
+y1 $>$ 0 \& N\+OT N\+U\+LL 
+
+x2 $>$ 0 \& N\+OT N\+U\+LL 
+
+y2 $>$ 0 \& N\+OT N\+U\+LL 
+
+x1 $<$ x2 
+
+y1 $<$ y2 
+\end{DoxyPrecond}
+\mbox{\Hypertarget{class_imagen_a01090e15cc72178a0d26dd6b9e67b398}\label{class_imagen_a01090e15cc72178a0d26dd6b9e67b398}} 
+\index{Imagen@{Imagen}!Save\+Imagen@{Save\+Imagen}}
+\index{Save\+Imagen@{Save\+Imagen}!Imagen@{Imagen}}
+\subsubsection{\texorpdfstring{Save\+Imagen()}{SaveImagen()}}
+{\footnotesize\ttfamily void Imagen\+::\+Save\+Imagen (\begin{DoxyParamCaption}\item[{const char $\ast$}]{nombre }\end{DoxyParamCaption})}
+
+
+
+Guarda una imagen formato .pgm a partir de un objeto de la clase. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nombre,nombre} & con el que se guarda la imagen \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true en el caso de que se guarde la imagen con éxito. 
+\end{DoxyReturn}
+\begin{DoxyPostcond}{Postcondition}
+la imagen se almacenará con la extensión .pgm 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{class_imagen_a2b83d6eb9fe1b76848f11baad84cb6d4}\label{class_imagen_a2b83d6eb9fe1b76848f11baad84cb6d4}} 
+\index{Imagen@{Imagen}!set\+Pixel@{set\+Pixel}}
+\index{set\+Pixel@{set\+Pixel}!Imagen@{Imagen}}
+\subsubsection{\texorpdfstring{set\+Pixel()}{setPixel()}}
+{\footnotesize\ttfamily void Imagen\+::set\+Pixel (\begin{DoxyParamCaption}\item[{int}]{fil,  }\item[{int}]{col,  }\item[{byte}]{valor }\end{DoxyParamCaption})}
+
+
+
+Asignación de un valor de gris a un pixel. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fil,número} & de fila del pixel que vamos a añadir \\
+\hline
+{\em col,número} & de columna del pixel que vamos a añadir \\
+\hline
+{\em valor,numero} & entre 0 y 255 que corresponde a un color en la escala de grises \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Asigna al pixel(i,j) el color correspondiente al valor introduciodo. 
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+fil $>$= 0 \& N\+OT N\+U\+LL 
+
+col $>$= 0 \& N\+OT N\+U\+LL 
+
+valor $>$= 0 \& N\+OT N\+U\+LL 
+\end{DoxyPrecond}
+\mbox{\Hypertarget{class_imagen_a8b208fc64ea4033e6a557a8c880c5c27}\label{class_imagen_a8b208fc64ea4033e6a557a8c880c5c27}} 
+\index{Imagen@{Imagen}!Umbral@{Umbral}}
+\index{Umbral@{Umbral}!Imagen@{Imagen}}
+\subsubsection{\texorpdfstring{Umbral()}{Umbral()}}
+{\footnotesize\ttfamily byte Imagen\+::\+Umbral (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Calcula de forma automatica el valor del umbral. 
+
+\begin{DoxyPostcond}{Postcondition}
+Devuelve el valor del umbral. 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{class_imagen_a845f920cc7180b4419025b6e863958f6}\label{class_imagen_a845f920cc7180b4419025b6e863958f6}} 
+\index{Imagen@{Imagen}!Zoom@{Zoom}}
+\index{Zoom@{Zoom}!Imagen@{Imagen}}
+\subsubsection{\texorpdfstring{Zoom()}{Zoom()}}
+{\footnotesize\ttfamily void Imagen\+::\+Zoom (\begin{DoxyParamCaption}\item[{int}]{x1,  }\item[{int}]{y1,  }\item[{int}]{x2,  }\item[{int}]{y2 }\end{DoxyParamCaption})}
+
+
+
+Realiza un zoom en una porción de la imagen mediante interpolación. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entrada,Nombre} & del archivo de la imagen a la que hacer zoom. \\
+\hline
+{\em salida,Nombre} & del archivo que tendrá la imagen con el zoom realizado. \\
+\hline
+{\em x1,coordenada} & del eje x de la esquina superior izquierda de la porción de la imagen a la que hacer zoom. \\
+\hline
+{\em y1,coordenada} & del eje y de la esquina superior izquierda de la porción de la imagen a la que hacer zoom. \\
+\hline
+{\em x2,coordenada} & del eje x de la esquina inferior derecha de la porcion de la imagen a la que hacer zoom. \\
+\hline
+{\em y2,coordenada} & del eje x de la esquina inferior derecha de la porción de la imagen a la que hacer zoom. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+x1 $>$ 0 \& N\+OT N\+U\+LL 
+
+y1 $>$ 0 \& N\+OT N\+U\+LL 
+
+x2 $>$ 0 \& N\+OT N\+U\+LL 
+
+y2 $>$ 0 \& N\+OT N\+U\+LL 
+
+La porción generada por las coordenadas debe ser cuadrada. 
+
+entrada y salida deben ser archivos con la extensión .pgm. 
+
+x1 $<$ x2 
+
+y1 $<$ y2 
+\end{DoxyPrecond}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+imagen.\+h\item 
+imagen.\+cpp\end{DoxyCompactItemize}
