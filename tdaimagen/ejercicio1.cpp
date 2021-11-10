@@ -23,11 +23,12 @@ void Menu(){
     Imagen prueba;
     Imagen umbral;
     Imagen contraste;
+    Imagen zoom;
 
     char *entrada = new char[100];
     char *salida = new char[100];
     byte u;
-    int inf, sup, minimo, maximo ;
+    int inf, sup, minimo, maximo, x1, y1, x2, y2;
 
     switch (opcion)
     {
@@ -79,7 +80,30 @@ void Menu(){
 
         cout << "***** ZOOM *****" << endl;
 
-        cout << "Todavia no implementado" << endl;
+        cout << "Escriba el nombre de la imagen que quiera subir: "<<endl;
+        cin >> entrada;
+        zoom.LoadImagen(entrada);
+        cout << "Dimensiones de la imagen seleccionada: " << zoom.getNumFilas() << 'x' << zoom.getNumColumnas() << endl;
+
+        //Le damos las coordenadas de la porcion a la que realizar el zoom
+        cout << "Introduce las coordenadas del vertice superior izquierdo de la parte a la que hacer zoom: " << endl;
+        cin >> x1 >> y1;
+
+
+        cout << "Introduce las coordenadas del vertice inferior derecha: " << endl;
+        cin >> x2 >> y2;
+
+        //Realizamos el zoom a la imagen
+        cout << "Realizando zoom..." << endl;
+        zoom.Zoom(x1, y1, x2, y2);
+
+        cout << zoom.getNumColumnas() << "\t" << zoom.getNumFilas();
+        
+        cout << "Escriba el nombre con el que quiera guardar la imagen: " << endl;
+        cin >> salida;
+
+
+        zoom.SaveImagen(salida);
 
       break;
 

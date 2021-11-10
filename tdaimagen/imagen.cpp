@@ -66,23 +66,17 @@ Imagen::Imagen(int filas, int cols){
 	filas = filas;
 	cols = cols;
 	img = new byte*[filas];
-	for (int i = 0; i < filas; i++)
-		img[i] = new byte[cols];
+	img[0] = new byte[filas*cols];
 
 }
 
 Imagen::Imagen(const Imagen &I){
 
-  filas = I.filas;
+  	filas = I.filas;
 	cols = I.cols;
-	img = new byte*[filas];
-	for (int i = 0; i < filas; i++)
-		img[i] = new byte[cols];
-
-	for (int i = 0; i < filas; i++)
-		for (int j = 0; j < cols; j++)
-			img[i][j] = I.img[i][j];
-
+	img[0] = new byte[filas*cols];
+	img[0] = I.img[0];
+	
 }
 
 void Imagen::Destruye(){
@@ -281,4 +275,84 @@ void Imagen::AjustaContraste(byte minimo, byte maximo){
   for (int i=0; i< tam; i++){
     img[0][i] = minimo + cociente * (img[0][i] - minimo_actual);
   }
+}
+
+
+/*******************************************************************************
+************************************ ZOOM **************************************
+*******************************************************************************/
+
+void Imagen::Zoom(int x1, int y1, int x2, int y2){
+	
+	if (EsCuadrada(x1, y1, x2, y2)){
+		int lado = x2-x1+1;
+		int lado_zoom = lado*2;
+		int tam_zoom = lado_zoom*lado_zoom;
+		byte * porcion = PorcionImagen(img[0], x1, y1, x2, y2);		//array con la porcion a aumentar de la imagen
+		byte *zoom = new unsigned char[tam_zoom]; 				//buffer de la imagen con el zoom realizado
+		
+		//Ajuste del buffer para dejar los huecos para realizar la interpolación a continuación
+		for (int i=0, k=0;i<lado; i++, k+=2){										//contea filas, k es el valor de la fila para el buffer de zoom, ya que hay que dejar una fila libre para la interpolacion de filas. 
+			for (int j=0;j<lado; j++){												//contea columnas		
+				zoom[(k*lado+j)*2] = porcion[i*lado+j];								//Esto asigna los valores con un hueco para la interpolacion de columnas
+			}
+		}
+		
+		//Interpolacion columnas
+		for (int i=0, k=0;i<lado; i++, k+=2){												//contea filas, k es el valor de la fila para el buffer de zoom, ya que hay que dejar una fila libre para la interpolacion de filas. 
+			for (int j=0;j<lado; j++){														//contea columnas		
+				zoom[(k*lado+j)*2+1] = MediaZoom(porcion[i*lado+j],porcion[i*lado+j+1]); 	//Aqui se introducen los valores interpolados en los huecos dejados anteriomente
+			}
+		}
+		
+		//Interpolacion filas
+		for(int i=0; i<lado_zoom-2; i+=2){
+			for (int j=0; j<lado_zoom; j++){
+				zoom[(i+1)*lado_zoom+j] = MediaZoom(zoom[i*lado_zoom+j], zoom[(i+2)*lado_zoom+j]);
+			}
+		}
+
+		filas = lado_zoom;
+		cols = lado_zoom;
+		img[0] = zoom;
+	}
+}
+
+
+bool Imagen::EsCuadrada(int x1, int y1, int x2, int y2){
+	
+	bool esCuadrado = false;
+	int lado_x, lado_y;
+	if(x1<x2 && y1<y2){
+		lado_x = x2-x1;
+		lado_y = y2-y1;
+		if(lado_x == lado_y)
+			esCuadrado = true;
+		
+	}else{
+		cout << "Coordenadas introducidas incorrectamente."<<endl;
+	}
+	return esCuadrado;
+}
+
+
+byte* Imagen::PorcionImagen(byte * buffer, int x1, int y1, int x2, int y2){
+	
+	int tam = x2-x1+1;
+	byte *buffer_porcion = new byte[tam*tam];
+
+	for(int i=x1, k=0; i<=x2 && k<tam; i++, k++)					//Este for contea las filas
+		for(int j=y1, l=0; j<=y2 && l<tam; j++, l++) 			//Este for contea las columnas
+			buffer_porcion[k*tam+l]=buffer[i*getNumFilas()+j];
+	return buffer_porcion;
+}
+
+byte Imagen::MediaZoom(byte valor1, byte valor2){
+	int media = 0;
+	if(((int) valor1 + (int) valor2)%2 == 0){
+		media = (valor1+valor2)/2;
+	}else{
+		media = (valor1+valor2)/2 + 1;
+	}
+	return (byte) media;
 }

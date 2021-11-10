@@ -232,5 +232,77 @@ class Imagen{
         */
 
         void AjustaContraste(byte minimo, byte maximo);
+
+
+/*******************************************************************************
+************************************* ZOOM *************************************
+*******************************************************************************/
+
+      /**
+       * @brief Realiza un zoom en una porción de la imagen mediante interpolación.
+       * @param entrada, Nombre del archivo de la imagen a la que hacer zoom.
+       * @param salida, Nombre del archivo que tendrá la imagen con el zoom realizado.
+       * @param x1, coordenada del eje x de la esquina superior izquierda de la porción de la imagen a la que hacer zoom.
+       * @param y1, coordenada del eje y de la esquina superior izquierda de la porción de la imagen a la que hacer zoom.
+       * @param x2, coordenada del eje x de la esquina inferior derecha de la porcion de la imagen a la que hacer zoom.
+       * @param y2, coordenada del eje x de la esquina inferior derecha de la porción de la imagen a la que hacer zoom.
+       * @pre x1 > 0 & NOT NULL
+       * @pre y1 > 0 & NOT NULL
+       * @pre x2 > 0 & NOT NULL
+       * @pre y2 > 0 & NOT NULL
+       * @pre La porción generada por las coordenadas debe ser cuadrada.
+       * @pre entrada y salida deben ser archivos con la extensión .pgm.
+       * @pre x1 < x2
+       * @pre y1 < y2       
+       */
+
+      void Zoom(int x1, int y1, int x2, int y2);
+
+      /**
+       * @brief Calcula si la porción dada es cuadrada o no
+       * @param x1, Valor de la coordenada x de la esquina superior izquierda.
+       * @param y1, Valor de la coordenada y de la esquina superior izquierda.
+       * @param x2, Valor de la coordenada x de la esquina inferior derecha.
+       * @param y2, Valor de la coordenada y de la esquina inferior derecha.
+       * @return Devuelve si la porción generada es cuadrada o no.
+       * @pre x1 > 0 & NOT NULL
+       * @pre y1 > 0 & NOT NULL
+       * @pre x2 > 0 & NOT NULL
+       * @pre y2 > 0 & NOT NULL
+       * @pre x1 < x2
+       * @pre y1 < y2
+       */ 
+
+      bool EsCuadrada(int x1, int y1, int x2, int y2);
+
+
+      /**
+       * @brief Recorta la porcion de la imagen a la que queremos hacer zoom.
+       * @param buffer, Array que contiene la imagen de donde queremos recortar la porcion a la que hacer el zoom
+       * @param x1, Valor de la coordenada x de la esquina superior izquierda.
+       * @param y1, Valor de la coordenada y de la esquina superior izquierda.
+       * @param x2, Valor de la coordenada x de la esquina inferior derecha.
+       * @param y2, Valor de la coordenada y de la esquina inferior derecha.
+       * @return, Devuelve un buffer con la porcion recortada de la imagen.
+       * @pre x1 > 0 & NOT NULL
+       * @pre y1 > 0 & NOT NULL
+       * @pre x2 > 0 & NOT NULL
+       * @pre y2 > 0 & NOT NULL
+       * @pre x1 < x2
+       * @pre y1 < y2
+       */
+
+      byte* PorcionImagen(unsigned char * buffer, int x1, int y1, int x2, int y2);  
+
+      /**
+       * @brief, Calcula la media por exceso de los valores para realizar la interpolacion.
+       * @param valor1, Primer valor con el que hacer la media.
+       * @param valor2, Segundo valor con el que hacer la media.
+       * @return, Devuelve la media por exceso de ambos valores dados.
+       * @pre valor1 <= 0 & NOT NULL
+       * @pre valor2 <= 0 & NOT NULL
+       */
+      byte MediaZoom(byte valor1, byte valor2);    
+
 };
 #endif
